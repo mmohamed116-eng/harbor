@@ -1,156 +1,90 @@
-/* Base styles */
-body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: #0d1117;
-  color: #ffffff;
-  margin: 0;
-  min-height: 100vh;
-  line-height: 1.6;
-  background: linear-gradient(135deg, #0d1117 0%, #1a1c2e 100%);
-}
-
-/* Container */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1rem;
-  min-height: 100vh;
+/* Navigation Bar */
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(13, 14, 25, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  border-radius: 0 0 12px 12px;
 }
 
-/* Header */
-header {
-  text-align: center;
-  padding: 2rem 1rem;
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-h1 {
-  font-size: 2.25rem;
-  color: #fff;
-  margin: 0;
-  letter-spacing: -0.5px;
-}
-
-.subtitle {
-  color: #F7A8B8;
-  font-size: 0.95rem;
-  margin-top: 0.5rem;
-  opacity: 0.9;
-}
-
-/* Main content */
-main {
-  flex: 1;
-  display: grid;
+.nav-links {
+  list-style: none;
+  display: flex;
   gap: 1.5rem;
-  padding: 0.5rem;
 }
 
-.category {
-  background: rgba(16,18,31,0.6);
-  border-radius: 12px;
-  padding: 1.25rem;
-  border: 1px solid rgba(85, 205, 252, 0.15);
+.nav-links li {
+  margin: 0;
 }
 
-h2 {
-  color: #55CDFC;
-  font-size: 1.15rem;
-  margin: 0 0 0.25rem 0;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.category-desc {
-  color: #F7A8B8;
-  font-size: 0.85rem;
-  margin: 0 0 1rem 0;
-  opacity: 0.8;
-}
-
-/* Card grid */
-.card-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.75rem;
-}
-
-.card {
-  background: rgba(13,14,25,0.8);
-  border-radius: 8px;
-  padding: 0.75rem;
-  text-align: center;
-  border: 1px solid rgba(85, 205, 252, 0.15);
-  transition: background-color 0.2s ease;
-}
-
-.card:hover {
-  background: rgba(16,18,31,0.9);
-}
-
-/* Links */
-a {
-  color: #fff;
-  text-decoration: none;
+.nav-links a {
+  color: #89B0AE;
   font-weight: 500;
-  font-size: 0.95rem;
-  display: block;
-  padding: 0.25rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #69C9D0;
+}
+
+/* CTA Button */
+.cta-button {
+  background: #69C9D0;
+  color: #fff;
+  padding: 0.75rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.cta-button:hover {
+  background: #55b1b7;
+  transform: translateY(-2px);
+}
+
+/* Back to Top Button */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #69C9D0;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: color 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: none;
+  transition: background 0.3s, box-shadow 0.2s;
 }
 
-a:hover {
-  color: #55CDFC;
+#backToTop:hover {
+  background: #55b1b7;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  color: #F7A8B8;
-  font-size: 0.85rem;
-  opacity: 0.8;
-}
+/* Show button on scroll */
+<script>
+  window.onscroll = function() {
+    const btn = document.getElementById("backToTop");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
+  };
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .container {
-    padding: 0.75rem;
-  }
-  
-  header {
-    padding: 1.5rem 1rem;
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
-  
-  .category {
-    padding: 1rem;
-  }
-  
-  .card-list {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 0.6rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .card-list {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 0.5rem;
-  }
-  
-  .card {
-    padding: 0.6rem;
-  }
-  
-  a {
-    font-size: 0.9rem;
-  }
-}
+  document.getElementById("backToTop").onclick = function() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
+</script>
